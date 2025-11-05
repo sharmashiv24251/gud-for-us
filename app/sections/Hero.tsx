@@ -41,13 +41,13 @@ function Title() {
       }}
     >
       <span className="block text-[64px] sm:text-[88px] md:text-[112px] lg:text-[128px] font-semibold tracking-tight">
-        GUD
+        gud
       </span>
       <span className="block text-[64px] sm:text-[88px] md:text-[112px] lg:text-[128px] font-semibold tracking-tight">
-        FOR
+        for
       </span>
       <span className="block text-[64px] sm:text-[88px] md:text-[112px] lg:text-[128px] font-semibold tracking-tight">
-        US
+        us
       </span>
     </h1>
   );

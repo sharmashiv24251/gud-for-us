@@ -6,8 +6,158 @@ import Story from "./sections/Story";
 import Checkout from "./sections/Checkout";
 import Footer from "./sections/Footer";
 import Contact from "./sections/Contact";
+import FlipBook from "@/components/flipbook";
 
 export default function Page() {
+  const bookPages = [
+    {
+      front: {
+        cover: true,
+        content: (
+          <>
+            <h1>FlipBook</h1>
+            <p>
+              2024.
+              <br />
+              Second edition
+            </p>
+          </>
+        ),
+      },
+      back: {
+        content: (
+          <>
+            <h2>Responsive</h2>
+            <p>
+              Fully responsive CSS flip book, thanks to the <code>cqmin</code>{" "}
+              unit.
+            </p>
+          </>
+        ),
+      },
+    },
+    {
+      front: {
+        content: (
+          <p>
+            Even more, the book height is dictated by the amount of content in
+            the tallest page. The only thing you need to take care of is how
+            much text you put into a page.
+          </p>
+        ),
+      },
+      back: {
+        hidePageNumber: true,
+        content: <img src="https://picsum.photos/id/24/600/600" alt="Img 1" />,
+      },
+    },
+    {
+      front: {
+        content: (
+          <>
+            <h2>Scroll Based</h2>
+            <p>
+              Now with scroll-based page turning! Simply scroll up or down to
+              flip through the pages. The page transitions are smooth and
+              responsive to your scrolling.
+            </p>
+          </>
+        ),
+      },
+      back: {
+        content: (
+          <p>
+            Additionally you can still click on pages to navigate. You can also
+            have multiple independent flip books in a single document. You're
+            all covered.
+          </p>
+        ),
+      },
+    },
+    {
+      front: {
+        content: (
+          <>
+            <h2>Crafting CSS magic</h2>
+            <p>
+              The opened (<i>viewing</i>) pages of the flip book are always kept
+              at the same elevation. This is necessary if your book has no
+              inclination (is top-down-view). Have you noticed that you can also
+              click on the pages edge? CSS will nicely animate the group of
+              pages to skip with a staggered animation.
+            </p>
+          </>
+        ),
+      },
+      back: {
+        content: (
+          <p>
+            Like in this demo, you can change the perspective of the parent
+            container and change the X axis rotation of the book for extra
+            effect.
+          </p>
+        ),
+      },
+    },
+    {
+      front: {
+        content: (
+          <p>
+            The necessary FlipBook's CSS is barely 30 lines, there is no swipe,
+            natural page flip angling, complex shadows, etc. in order to keep it
+            as simple as possible.
+          </p>
+        ),
+      },
+      back: {
+        content: (
+          <p>
+            Feel free to use and abuse this code. Drop me a line if you find it
+            cool or useful, or just want to say <i>hi</i>.
+          </p>
+        ),
+      },
+    },
+    {
+      front: {
+        hidePageNumber: true,
+        content: (
+          <img src="https://picsum.photos/id/1073/600/600" alt="Img 2" />
+        ),
+      },
+      back: {
+        cover: true,
+        content: (
+          <>
+            <h3>That's all, folks</h3>
+            <p>
+              FlipBook code and content:
+              <br />
+              <a
+                href="https://stackoverflow.com/users/383904/roko-c-buljan"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Roko C. Buljan
+              </a>
+              <br />
+              Original idea:
+              <br />
+              <a
+                href="https://stackoverflow.com/a/76978444/383904"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Stack Overflow answer
+              </a>
+              <br />
+              Images by: picsum.photos
+            </p>
+          </>
+        ),
+      },
+    },
+  ];
   return (
     <>
       {/* Global grain + glow overlays */}
@@ -29,6 +179,17 @@ export default function Page() {
 
       <main id="main" className="relative z-10">
         <Hero />
+
+        <section id="flipbook-section" className="relative">
+          <div id="scroll-spacer" className="scroll-spacer"></div>
+          <div id="book-container" className="book-container">
+            <FlipBook pages={bookPages} />
+          </div>
+          <div id="scroll-indicator" className="scroll-indicator">
+            Scroll to flip pages
+          </div>
+        </section>
+
         <Pillars />
         <Info />
         <Review />
