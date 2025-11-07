@@ -48,54 +48,11 @@ export default function Page() {
       },
       back: {
         hidePageNumber: true,
-        content: <img src="https://picsum.photos/id/24/600/600" alt="Img 1" />,
-      },
-    },
-    {
-      front: {
         content: (
-          <>
-            <h2>Scroll Based</h2>
-            <p>
-              Now with scroll-based page turning! Simply scroll up or down to
-              flip through the pages. The page transitions are smooth and
-              responsive to your scrolling.
-            </p>
-          </>
-        ),
-      },
-      back: {
-        content: (
-          <p>
-            Additionally you can still click on pages to navigate. You can also
-            have multiple independent flip books in a single document. You're
-            all covered.
-          </p>
-        ),
-      },
-    },
-    {
-      front: {
-        content: (
-          <>
-            <h2>Crafting CSS magic</h2>
-            <p>
-              The opened (<i>viewing</i>) pages of the flip book are always kept
-              at the same elevation. This is necessary if your book has no
-              inclination (is top-down-view). Have you noticed that you can also
-              click on the pages edge? CSS will nicely animate the group of
-              pages to skip with a staggered animation.
-            </p>
-          </>
-        ),
-      },
-      back: {
-        content: (
-          <p>
-            Like in this demo, you can change the perspective of the parent
-            container and change the X axis rotation of the book for extra
-            effect.
-          </p>
+          <img
+            src="https://opfjwckyarxymdkzuwdk.supabase.co/storage/v1/object/public/envo/temp-gud-for-us.jpeg"
+            alt="Img 1"
+          />
         ),
       },
     },
@@ -122,7 +79,10 @@ export default function Page() {
       front: {
         hidePageNumber: true,
         content: (
-          <img src="https://picsum.photos/id/1073/600/600" alt="Img 2" />
+          <img
+            src="https://opfjwckyarxymdkzuwdk.supabase.co/storage/v1/object/public/envo/temp-gud-for-us.jpeg"
+            alt="Img 2"
+          />
         ),
       },
       back: {
@@ -151,7 +111,6 @@ export default function Page() {
                 Stack Overflow answer
               </a>
               <br />
-              Images by: picsum.photos
             </p>
           </>
         ),
@@ -163,7 +122,7 @@ export default function Page() {
       {/* Global grain + glow overlays */}
       <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(50%_50%_at_50%_0%,rgba(16,185,129,0.10),transparent_60%),radial-gradient(30%_30%_at_90%_10%,rgba(99,102,241,0.08),transparent_70%)]"></div>
-        <div className="absolute inset-0 mix-blend-overlay opacity-[0.08] bg-[url('https://images.unsplash.com/photo-1558888400-16e560ae7f82?q=80&w=300&auto=format&fit=crop')] bg-[length:300px_300px]"></div>
+        <div className="absolute inset-0 mix-blend-overlay opacity-[0.08]"></div>
       </div>
 
       {/* Skip to content */}

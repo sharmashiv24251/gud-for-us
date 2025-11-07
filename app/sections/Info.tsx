@@ -25,7 +25,9 @@ function MainText() {
   return (
     <p
       className="text-center text-[22px] sm:text-[36px] md:text-[56px] lg:text-[64px] leading-[1.05] font-semibold tracking-tight text-white"
-      style={{ fontFamily: "'Space Grotesk', ui-sans-serif, Inter, system-ui" }}
+      style={{
+        fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
+      }}
     >
       NON-NEGOTIABLES OF HEALTH AND WELLBEING
     </p>

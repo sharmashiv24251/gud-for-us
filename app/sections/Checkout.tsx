@@ -17,7 +17,7 @@ function CheckoutInfo() {
       <h3
         className="text-xl text-white font-semibold tracking-tight"
         style={{
-          fontFamily: "'Space Grotesk', ui-sans-serif, Inter, system-ui",
+          fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
         }}
       >
         Ready to read?

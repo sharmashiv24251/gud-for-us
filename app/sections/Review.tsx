@@ -15,7 +15,7 @@ function SectionHeader() {
       <h2
         className="text-2xl sm:text-3xl text-white tracking-tight font-semibold"
         style={{
-          fontFamily: "'Space Grotesk', ui-sans-serif, Inter, system-ui",
+          fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
         }}
       >
         What readers say

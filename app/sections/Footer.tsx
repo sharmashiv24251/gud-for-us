@@ -1,25 +1,23 @@
-export default function Footer() {
-  return (
-    <footer className="relative border-t border-white/10">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <FooterLeft />
-          <div className="hidden lg:block"></div>
-          <FooterRight />
-        </div>
+import type { JSX } from "react";
 
-        <FooterBottom />
-      </div>
-    </footer>
+export default function Footer(): JSX.Element {
+  return (
+    <>
+      <footer className="relative border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-6 py-16">
+          <FooterContent />
+        </div>
+      </footer>
+      <FooterBottom />
+    </>
   );
 }
 
-function FooterLeft() {
+function FooterContent() {
   return (
     <div>
       <Logo />
       <FooterLinks />
-      <FooterSubscribe />
       <Copyright />
     </div>
   );
@@ -64,30 +62,6 @@ function FooterLinks() {
   );
 }
 
-function FooterSubscribe() {
-  return (
-    <form className="mt-6 flex items-center gap-3">
-      <label htmlFor="footer-email" className="sr-only">
-        Email address
-      </label>
-      <input
-        id="footer-email"
-        type="email"
-        required
-        placeholder="Your email"
-        className="w-full rounded-xl bg-neutral-900/60 ring-1 ring-white/10 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
-      />
-      <button
-        type="submit"
-        className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-neutral-950 text-sm font-semibold shadow-[0_10px_40px_-10px_rgba(16,185,129,0.7)] transition hover:brightness-110 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/40"
-      >
-        <SendIcon />
-        <span>Subscribe</span>
-      </button>
-    </form>
-  );
-}
-
 function Copyright() {
   const year = new Date().getFullYear();
   return (
@@ -97,99 +71,22 @@ function Copyright() {
   );
 }
 
-function FooterRight() {
-  return (
-    <div className="relative">
-      <div className="relative ml-auto w-full max-w-[320px] aspect-[9/16] rounded-[28px] bg-neutral-900/60 ring-1 ring-white/10 overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop"
-          alt="Vertical artwork placeholder"
-          className="h-full w-full object-cover opacity-90"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neutral-900/10 to-neutral-900/60"></div>
-        <div className="absolute inset-x-4 bottom-4">
-          <p className="text-[10px] uppercase tracking-[0.38em] text-neutral-200/90 text-center">
-            NON-NEGOTIABLES OF HEALTH AND WELLBEING
-          </p>
-        </div>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/20"
-        ></div>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 rounded-[28px] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]"
-        ></div>
-      </div>
-    </div>
-  );
-}
-
 function FooterBottom() {
   return (
-    <div className="mx-auto max-w-7xl px-6 pt-6">
-      <a
-        href="#community"
-        className="inline-flex items-center gap-2 text-sm text-neutral-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2 py-1"
+    <div className="w-full bg-neutral-950 border-t border-white/10 overflow-hidden">
+      <h2
+        className="text-white font-semibold whitespace-nowrap text-center"
+        style={{
+          fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
+          fontSize: "25vw",
+          letterSpacing: "-0.07em",
+          lineHeight: "1",
+          margin: "0",
+          padding: "0.15em 0",
+        }}
       >
-        <UsersIcon />
-        <span>Join the Guders</span>
-        <ArrowRightIcon />
-      </a>
+        gud for us
+      </h2>
     </div>
-  );
-}
-
-function SendIcon() {
-  return (
-    <svg
-      className="w-4 h-4"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-      />
-    </svg>
-  );
-}
-
-function UsersIcon() {
-  return (
-    <svg
-      className="w-4 h-4 text-emerald-300"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-      />
-    </svg>
-  );
-}
-
-function ArrowRightIcon() {
-  return (
-    <svg
-      className="w-4 h-4"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M14 5l7 7m0 0l-7 7m7-7H3"
-      />
-    </svg>
   );
 }

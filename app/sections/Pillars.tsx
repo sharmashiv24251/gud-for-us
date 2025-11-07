@@ -15,7 +15,7 @@ function SectionHeader() {
       <h2
         className="text-2xl sm:text-3xl text-white tracking-tight font-semibold"
         style={{
-          fontFamily: "'Space Grotesk', ui-sans-serif, Inter, system-ui",
+          fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
         }}
       >
         Explore the pillars
@@ -99,7 +99,7 @@ function PillarCard({
         <h3
           className="mt-5 text-lg text-white font-semibold tracking-tight"
           style={{
-            fontFamily: "'Space Grotesk', ui-sans-serif, Inter, system-ui",
+            fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
           }}
         >
           {title}

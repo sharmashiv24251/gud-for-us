@@ -174,7 +174,7 @@ aspect-ratio: 3 / 4;
       hsl(150 80% 20% / 0.3) 0%,
       hsl(170 60% 10% / 0.1) 100%
     ),
-    hsl(231, 32%, 29%) url("https://picsum.photos/id/984/800/900") 50% / cover;
+    hsl(231, 32%, 29%) url("https://opfjwckyarxymdkzuwdk.supabase.co/storage/v1/object/public/envo/temp-gud-for-us.jpeg") 50% / cover;
   color: hsl(200 30% 98%);
 }
 

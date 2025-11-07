@@ -17,7 +17,7 @@ function CommunityInfo() {
       <h3
         className="text-xl sm:text-2xl text-white tracking-tight font-semibold"
         style={{
-          fontFamily: "'Space Grotesk', ui-sans-serif, Inter, system-ui",
+          fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
         }}
       >
         🌿 Join the Guders
