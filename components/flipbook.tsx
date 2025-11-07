@@ -1,6 +1,16 @@
+// @/components/flipbook.tsx
 "use client";
-import React, { useEffect, useRef, useState } from "react";
 
+import React, { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
+
+// --- TYPE DEFINITIONS ---
+// (Copied from your original file)
 type Page = {
   front: {
     cover?: boolean;
@@ -18,188 +28,263 @@ type FlipBookProps = {
   pages: Page[];
 };
 
+// --- 1. MAIN FLIPBOOK COMPONENT ---
+// This is now a self-contained scroll section.
+// Just drop it into your page.
+// ------------------------------------
 export default function FlipBook({ pages }: FlipBookProps) {
-  const [currentPage, setCurrentPage] = useState(0);
-  const bookRef = useRef<HTMLDivElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const totalPages = pages.length;
 
-  // Keep --c in sync with currentPage
-  useEffect(() => {
-    if (bookRef.current) {
-      bookRef.current.style.setProperty("--c", String(currentPage));
-    }
-  }, [currentPage]);
+  // 1. Scroll Logic
+  // We track the scroll progress of the trackRef div.
+  const { scrollYProgress } = useScroll({
+    target: trackRef,
+    offset: ["start start", "end end"], // Start when track top hits viewport top, end when track bottom hits viewport bottom
+  });
 
-  useEffect(() => {
-    const section = document.getElementById("flipbook-section");
-    const scrollSpacer = document.getElementById("scroll-spacer");
-    const indicator = document.getElementById("scroll-indicator");
-    const bookContainer = document.getElementById("book-container");
+  // 2. Map scroll to current page
+  // We map the 0-1 scroll progress to a page number, from 0 to totalPages.
+  // As we scroll, `currentPage` will go from 0 up to `totalPages`.
+  const currentPage = useTransform(scrollYProgress, [0, 1], [0, totalPages]);
 
-    if (!section || !scrollSpacer || !bookContainer) {
-      console.warn("FlipBook: missing required DOM elements");
-      return;
-    }
+  // 3. Scroll-to-page click handler
+  const scrollToPage = (idx: number) => {
+    if (!trackRef.current) return;
 
-    // Set total pages for spacer height calculation
-    scrollSpacer.style.setProperty("--total-pages", String(pages.length));
-    containerRef.current = bookContainer as HTMLDivElement;
+    // Get the top offset of the entire scroll track
+    const trackTop = trackRef.current.offsetTop;
+    // Get the total scrollable height of the track
+    const trackScrollableHeight =
+      trackRef.current.scrollHeight - window.innerHeight;
 
-    const onScroll = () => {
-      const rect = section.getBoundingClientRect();
-      const sectionTop = window.scrollY + rect.top;
-      const sectionBottom = window.scrollY + rect.bottom;
-      const sectionHeight = Math.max(rect.height, 1);
+    // Calculate the target progress (0-1) for the desired page index
+    // We add a tiny bit (0.1) to make sure the flip is initiated
+    const targetProgress = (idx + 0.1) / totalPages;
 
-      // Viewport center position
-      const viewportCenter = window.scrollY + window.innerHeight / 2;
+    // Calculate the final scrollY position
+    const targetScrollY = trackTop + targetProgress * trackScrollableHeight;
 
-      // Check if section is in view
-      const isInView =
-        viewportCenter >= sectionTop && viewportCenter <= sectionBottom;
-
-      if (!isInView) {
-        // Hide book when outside section
-        bookContainer.style.opacity = "0";
-        return;
-      }
-
-      // Show book
-      bookContainer.style.opacity = "1";
-
-      // Calculate normalized progress through entire section (0 to 1)
-      const rawProgress = (viewportCenter - sectionTop) / sectionHeight;
-      const progress = Math.max(0, Math.min(1, rawProgress));
-
-      // Phase boundaries
-      // Total phases: pages.length + 2 (one for scroll-in, pages.length for flipping, one for scroll-out)
-      const totalPhases = pages.length + 2;
-      const phaseSize = 1 / totalPhases;
-
-      let bookYOffset = 0; // Vertical offset in vh units
-      let pageIndex = 0;
-
-      if (progress < phaseSize) {
-        // PHASE 1: SCROLL-IN (book moves from bottom to center)
-        const phaseProgress = progress / phaseSize;
-        bookYOffset = 100 * (1 - phaseProgress); // 100vh to 0vh
-        pageIndex = 0;
-      } else if (progress < 1 - phaseSize) {
-        // PHASE 2: PAGE FLIPPING (book stays centered)
-        const phaseStart = phaseSize;
-        const phaseEnd = 1 - phaseSize;
-        const phaseProgress = (progress - phaseStart) / (phaseEnd - phaseStart);
-        bookYOffset = 0; // stays at center
-        pageIndex = Math.round(phaseProgress * (pages.length - 1));
-      } else {
-        // PHASE 3: SCROLL-OUT (book moves from center to top)
-        const phaseProgress = (progress - (1 - phaseSize)) / phaseSize;
-        bookYOffset = -100 * phaseProgress; // 0vh to -100vh
-        pageIndex = pages.length - 1;
-      }
-
-      // Apply vertical transform to book container
-      bookContainer.style.transform = `translate(-50%, calc(-50% + ${bookYOffset}vh))`;
-
-      // Update current page
-      setCurrentPage(Math.max(0, Math.min(pageIndex, pages.length - 1)));
-
-      // Hide indicator after initial scroll
-      if (indicator && progress > 0.05) {
-        indicator.style.opacity = "0";
-      }
-    };
-
-    // Initial setup
-    onScroll();
-
-    // Attach scroll listener
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-
-    // Auto-hide indicator after 3 seconds
-    const hideTimer = setTimeout(() => {
-      if (indicator) {
-        indicator.style.opacity = "0";
-      }
-    }, 3000);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      clearTimeout(hideTimer);
-    };
-  }, [pages.length]);
-
-  // Click to scroll to specific page
-  const scrollToPageIndex = (pageIndex: number) => {
-    const section = document.getElementById("flipbook-section");
-    if (!section) return;
-
-    const rect = section.getBoundingClientRect();
-    const sectionTop = window.scrollY + rect.top;
-    const sectionHeight = Math.max(rect.height, 1);
-
-    // Calculate target progress for the page
-    const totalPhases = pages.length + 2;
-    const phaseSize = 1 / totalPhases;
-
-    // Page flipping phase starts after scroll-in phase
-    const flipPhaseStart = phaseSize;
-    const flipPhaseEnd = 1 - phaseSize;
-
-    // Progress within flip phase
-    const pageProgress = pages.length > 1 ? pageIndex / (pages.length - 1) : 0;
-    const targetProgress =
-      flipPhaseStart + pageProgress * (flipPhaseEnd - flipPhaseStart);
-
-    const targetCenter = sectionTop + targetProgress * sectionHeight;
-    const targetScrollTop = targetCenter - window.innerHeight / 2;
-
-    window.scrollTo({ top: targetScrollTop, behavior: "smooth" });
+    // Scroll the window smoothly to that position
+    window.scrollTo({
+      top: targetScrollY,
+      behavior: "smooth",
+    });
   };
 
-  const handlePageClick = (
-    evt: React.MouseEvent,
-    idx: number,
-    isFront: boolean
-  ) => {
-    if ((evt.target as HTMLElement).closest("a")) return;
-    const nextPage = isFront ? idx + 1 : idx;
-    const clampedPage = Math.max(0, Math.min(nextPage, pages.length - 1));
-    setCurrentPage(clampedPage);
-    scrollToPageIndex(clampedPage);
-  };
+  // 4. Book-level transforms (the 3D tilt)
+  // Replicates the `rotateX(30deg)` from your CSS.
+  // It animates from 30deg to 0deg as you start scrolling,
+  // and back to 30deg as you scroll out.
+  const bookRotateX = useTransform(
+    scrollYProgress,
+    [0, 0.05, 0.95, 1], // at 0% scroll, 5%, 95%, 100%
+    [30, 0, 0, 30] // apply these rotation values
+  );
 
   return (
-    <div className="book" ref={bookRef}>
-      {pages.map((page, idx) => (
-        <div
-          key={idx}
-          className="page"
-          style={{ ["--i" as any]: idx } as React.CSSProperties}
+    // A. The Scroll Track
+    // This div creates the scrollable height for the animation.
+    // Height is (N+1)*100vh: 100vh for each page + 1 "buffer" vh.
+    // This is the "scroll hijacking" container.
+    <div
+      ref={trackRef}
+      className="relative"
+      style={{ height: `${(totalPages + 1) * 100}vh` }}
+    >
+      {/* B. The Sticky Container */}
+      {/* This holds the book centered on screen. It sticks to the top */}
+      {/* of the viewport for the entire duration of the scroll track. */}
+      <div className="sticky top-0 flex h-screen w-full items-center justify-center">
+        {/* C. The Book Container */}
+        {/* This div applies the 3D perspective and the book's tilt. */}
+        <motion.div
+          className="relative w-[40vmin] aspect-[3/4]"
+          style={{
+            perspective: "1000px",
+            transformStyle: "preserve-3d",
+            rotateX: bookRotateX,
+          }}
         >
-          <div
-            className={`front ${page.front.cover ? "cover" : ""}`}
-            onClick={(evt) => handlePageClick(evt, idx, true)}
-          >
-            {page.front.content}
-            {!page.front.cover && !page.front.hidePageNumber && (
-              <span className="page-number">{idx * 2 + 1}.</span>
-            )}
-          </div>
-
-          <div
-            className={`back ${page.back.cover ? "cover" : ""}`}
-            onClick={(evt) => handlePageClick(evt, idx, false)}
-          >
-            {page.back.content}
-            {!page.back.cover && !page.back.hidePageNumber && (
-              <span className="page-number">{idx * 2 + 2}.</span>
-            )}
-          </div>
-        </div>
-      ))}
+          {/* D. Map over pages */}
+          {/* We render all pages, and their animations are driven */}
+          {/* by the `currentPage` motion value. */}
+          {pages.map((page, idx) => (
+            <BookPage
+              key={idx}
+              page={page}
+              idx={idx}
+              totalPages={totalPages}
+              currentPage={currentPage}
+              onPageClick={() => scrollToPage(idx + 1)} // Click front -> go to next page
+              onBackClick={() => scrollToPage(idx)} // Click back -> go to this page
+            />
+          ))}
+        </motion.div>
+      </div>
     </div>
+  );
+}
+
+// --- 2. BOOK PAGE SUB-COMPONENT ---
+// This component handles the logic for a single flipping page.
+// ---------------------------------
+type BookPageProps = {
+  page: Page;
+  idx: number; // This page's index (0, 1, 2...)
+  totalPages: number;
+  currentPage: MotionValue<number>; // The shared motion value (0 to totalPages)
+  onPageClick: () => void;
+  onBackClick: () => void;
+};
+
+function BookPage({
+  page,
+  idx,
+  totalPages,
+  currentPage,
+  onPageClick,
+  onBackClick,
+}: BookPageProps) {
+  // 1. Page Flip Transform
+  // As `currentPage` goes from `idx` to `idx + 1`,
+  // this page's `rotateY` will go from 0 to -180 degrees.
+  const rotateY = useTransform(currentPage, [idx, idx + 1], [0, -180], {
+    clamp: true, // Don't extrapolate past -180deg
+  });
+
+  // 2. Z-Index Transform
+  // This is a trick to ensure the active page is always on top.
+  // We calculate the "distance" from the active page.
+  // The page closest to the current flip (diff approx 0) gets the highest z-index.
+  const zIndex = useTransform(currentPage, (c) => {
+    // c = current page (e.g., 1.5)
+    // idx = this page's index (e.g., 1)
+    // diff = abs(1.5 - 1 - 0.5) = 0
+    // z-index = 50 - 0 = 50 (highest)
+    const diff = Math.abs(c - idx - 0.5);
+    return Math.floor(50 - diff);
+  });
+
+  return (
+    <motion.div
+      className="absolute top-0 left-0 w-full h-full"
+      style={{
+        // Essential styles for 3D transform
+        transformOrigin: "left center", // Flip from the "spine"
+        transformStyle: "preserve-3d",
+        // Apply motion values
+        rotateY,
+        zIndex,
+      }}
+    >
+      {/* Front of the page */}
+      <PageContent
+        isFront={true}
+        content={page.front.content}
+        isCover={page.front.cover}
+        hidePageNumber={page.front.hidePageNumber}
+        pageNumber={idx * 2 + 1}
+        onClick={onPageClick}
+      />
+
+      {/* Back of the page */}
+      <PageContent
+        isFront={false}
+        content={page.back.content}
+        isCover={page.back.cover}
+        hidePageNumber={page.back.hidePageNumber}
+        pageNumber={idx * 2 + 2}
+        onClick={onBackClick}
+      />
+    </motion.div>
+  );
+}
+
+// --- 3. PAGE CONTENT SUB-COMPONENT ---
+// This component handles all the styling for the page surfaces.
+// ------------------------------------
+type PageContentProps = {
+  isFront: boolean;
+  content: React.ReactNode;
+  isCover?: boolean;
+  hidePageNumber?: boolean;
+  pageNumber: number;
+  onClick: () => void;
+};
+
+function PageContent({
+  isFront,
+  content,
+  isCover,
+  hidePageNumber,
+  pageNumber,
+  onClick,
+}: PageContentProps) {
+  // Check if content is an image for full-bleed styling
+  const hasImage = React.Children.toArray(content).some(
+    (child) => (child as React.ReactElement).type === "img"
+  );
+
+  // --- Build Tailwind classes ---
+  let baseClasses =
+    "absolute w-full h-full flex flex-col justify-between text-black shadow-lg cursor-pointer";
+
+  // Padding: None if it's an image, default otherwise
+  baseClasses += hasImage ? " p-0" : " p-8";
+
+  // Cover vs. Regular Page
+  if (isCover) {
+    baseClasses += " text-white bg-[hsl(231,32%,29%)]"; // Your cover color
+    if (isFront) {
+      baseClasses += " bg-cover bg-center"; // Front cover has image
+    }
+  } else {
+    // Regular page gradients (replicating your CSS)
+    baseClasses += isFront
+      ? " bg-gradient-to-l from-neutral-100 via-white to-white"
+      : " bg-gradient-to-r from-neutral-100 via-white to-white";
+  }
+
+  // Rounding (inner vs. outer edge)
+  baseClasses += isFront ? " rounded-r-lg" : " rounded-l-lg";
+
+  return (
+    <motion.div
+      className={baseClasses}
+      style={{
+        // Hide the backface of the div when it's rotated
+        backfaceVisibility: "hidden",
+        // Apply front cover image (from your CSS)
+        backgroundImage:
+          isCover && isFront
+            ? `url("https://opfjwckyarxymdkzuwdk.supabase.co/storage/v1/object/public/envo/temp-gud-for-us.jpeg")`
+            : undefined,
+        // The back div must be pre-rotated 180deg
+        transform: isFront ? "none" : "rotateY(180deg)",
+      }}
+      onClick={(e) => {
+        // Don't trigger flip if clicking an actual link
+        if ((e.target as HTMLElement).closest("a")) return;
+        onClick();
+      }}
+    >
+      {/* Content (relative z-10 to be above image) */}
+      <div className={`relative z-10 ${hasImage ? "p-8" : ""}`}>{content}</div>
+
+      {/* Page Number (z-0, behind content) */}
+      {!isCover && !hidePageNumber && (
+        <span
+          className={`absolute bottom-4 text-sm z-0 ${
+            isFront ? "right-4" : "left-4"
+          }`}
+        >
+          {pageNumber}.
+        </span>
+      )}
+
+      {/* Full-bleed image content (if present) */}
+      {hasImage && <div className="absolute inset-0 z-0">{content}</div>}
+    </motion.div>
   );
 }
