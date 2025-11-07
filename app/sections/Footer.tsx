@@ -73,15 +73,15 @@ function Copyright() {
 
 function FooterBottom() {
   return (
-    <div className="w-full bg-neutral-950 border-t border-white/10 overflow-hidden">
+    <div className="w-full bg-neutral-950 border-t max-w-7xl mx-auto border-white/10 overflow-hidden">
       <h2
         className="text-white font-semibold whitespace-nowrap text-center"
         style={{
           fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
-          fontSize: "25vw",
+          fontSize: "clamp(1rem, 25vw, 20rem)",
           letterSpacing: "-0.07em",
           lineHeight: "1",
-          margin: "0",
+          margin: "0 0 50px 0",
           padding: "0.15em 0",
         }}
       >

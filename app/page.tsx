@@ -142,7 +142,9 @@ export default function Page() {
         <section
           id="flipbook-section"
           className="relative"
-          style={{ ["--total-pages" as any]: bookPages.length }}
+          style={{
+            ["--total-pages" as any]: bookPages.length,
+          }}
         >
           {" "}
           <div id="scroll-spacer" className="scroll-spacer"></div>
