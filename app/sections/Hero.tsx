@@ -70,7 +70,7 @@ function BookCard(): JSX.Element {
   const handleClick = () => setIsOpen((v) => !v);
 
   return (
-    <div className="relative lg:ml-auto max-lg:mx-auto w-full max-w-md aspect-[10.2/16]">
+    <div className="relative lg:ml-auto max-lg:mx-auto w-full max-w-sm aspect-[10.2/16]">
       <GlowFloor />
       <button
         type="button"
