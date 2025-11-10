@@ -1,6 +1,6 @@
 export default function Pillars() {
   return (
-    <section id="cards" className="relative border-t border-white/10">
+    <section id="cards" className="relative border-t border-foreground/20">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader />
         <CardGrid />
@@ -11,7 +11,7 @@ export default function Pillars() {
 
 function SectionHeader() {
   return (
-    <div className="mb-2 flex items-end justify-between max-sm:pt-10">
+    <div className="mb-2 flex items-end justify-between pt-10">
       <h2
         className="text-2xl sm:text-3xl text-foreground tracking-tight font-semibold"
         style={{
@@ -77,14 +77,14 @@ function PillarCard({
   glow: string;
 }) {
   return (
-    <article className="group relative rounded-2xl bg-background/60 ring-1 ring-white/10 p-5 overflow-hidden transform-gpu transition duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-500/10 motion-reduce:transition-none">
+    <article className="group relative rounded-2xl bg-background/60 ring-1 ring-foreground/20 p-5 overflow-hidden transform-gpu transition duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-500/10 motion-reduce:transition-none">
       <div
         aria-hidden="true"
         className={`absolute -inset-12 opacity-0 group-hover:opacity-100 transition duration-700 blur-3xl ${glow}`}
       ></div>
       <div className="relative">
         <div className="relative [perspective:1200px]">
-          <div className="relative h-40 rounded-xl overflow-hidden transform-gpu transition duration-500 group-hover:[transform:translateZ(20px)_rotateX(2deg)] ring-1 ring-white/10">
+          <div className="relative h-40 rounded-xl overflow-hidden transform-gpu transition duration-500 group-hover:[transform:translateZ(20px)_rotateX(2deg)] ring-1 ring-foreground/20">
             <img
               src={image}
               alt="Book cover art placeholder"

@@ -1,6 +1,9 @@
 export default function Review() {
   return (
-    <section id="testimonials" className="relative border-t border-white/10">
+    <section
+      id="testimonials"
+      className="relative border-t border-foreground/20"
+    >
       <div className="mx-auto max-w-7xl px-6 py-20">
         <SectionHeader />
         <TestimonialCarousel />
@@ -72,12 +75,12 @@ function TestimonialCard({
   quote: string;
 }) {
   return (
-    <figure className="snap-start min-w-[280px] md:min-w-[360px] rounded-2xl bg-background/60 ring-1 ring-white/10 p-6 transition hover:-translate-y-1 hover:ring-emerald-400/30 transform-gpu">
+    <figure className="snap-start min-w-[280px] md:min-w-[360px] rounded-2xl bg-background/60 ring-1 ring-foreground/20 p-6 transition hover:-translate-y-1 hover:ring-emerald-400/30 transform-gpu">
       <div className="flex items-center gap-3">
         <img
           src={image}
           alt=""
-          className="h-9 w-9 rounded-full object-cover ring-1 ring-white/20"
+          className="h-9 w-9 rounded-full object-cover ring-1 ring-foreground/20"
         />
         <div>
           <figcaption className="text-sm text-foreground font-medium">

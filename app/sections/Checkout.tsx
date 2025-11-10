@@ -1,8 +1,8 @@
 export default function Checkout() {
   return (
-    <section id="checkout" className="relative border-t border-white/10">
+    <section id="checkout" className="relative border-t border-foreground/20">
       <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="rounded-2xl bg-background/60 ring-1 ring-white/10 p-8 flex flex-col md:flex-row items-center md:items-end justify-between gap-6">
+        <div className="rounded-2xl bg-background/60 ring-1 ring-foreground/20 p-8 flex flex-col md:flex-row items-center md:items-end justify-between gap-6">
           <CheckoutInfo />
           <CheckoutActions />
         </div>
@@ -44,7 +44,7 @@ function CheckoutActions() {
       </a>
       <a
         href="#"
-        className="inline-flex items-center gap-2 rounded-xl bg-background px-4 py-3 text-foreground text-sm ring-1 ring-white/10 transition hover:bg-background active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+        className="inline-flex items-center gap-2 rounded-xl bg-background px-4 py-3 text-foreground text-sm ring-1 ring-foreground/20 transition hover:bg-background active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
       >
         <ShieldCheckIcon />
         <span>30-day guarantee</span>

@@ -2,7 +2,7 @@ import type { JSX } from "react";
 
 export default function Footer(): JSX.Element {
   return (
-    <footer className="w-full border-t border-white/10 bg-transparent">
+    <footer className="w-full border-t border-foreground/20 bg-transparent">
       <div className="mx-auto max-w-7xl px-6 py-10">
         <FooterContent />
       </div>
@@ -35,7 +35,7 @@ function Logo() {
     <div className="flex items-center gap-3">
       <div
         aria-hidden
-        className="h-8 w-8 rounded-md bg-background ring-1 ring-white/10 grid place-content-center text-emerald-300 text-xs font-semibold"
+        className="h-8 w-8 rounded-md bg-background ring-1 ring-foreground/20 grid place-content-center text-emerald-300 text-xs font-semibold"
         style={{ letterSpacing: "-0.02em" }}
       >
         G
@@ -85,7 +85,7 @@ function Copyright() {
 function FooterBottom() {
   return (
     // keep this full-bleed and visually connected to the footer above
-    <div className="w-full bg-background border-t border-white/10 mb-10">
+    <div className="w-full bg-background border-t border-foreground/20 mb-10">
       {/* center the big title in the same max width as the content but allow the background to bleed */}
       <div className="mx-auto max-w-7xl px-6 py-6">
         <h2

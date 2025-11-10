@@ -173,7 +173,7 @@ function Header() {
       <div className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div
-            className="h-8 w-8 rounded-md bg-background ring-1 ring-white/10 grid place-content-center text-emerald-300 text-xs font-semibold"
+            className="h-8 w-8 rounded-md bg-background ring-1 ring-foreground grid place-content-center text-emerald-300 text-xs font-semibold"
             style={{ letterSpacing: "-0.02em" }}
           >
             G
@@ -209,7 +209,7 @@ function Header() {
         <div className="flex items-center gap-3">
           <a
             href="#checkout"
-            className="hidden md:inline-flex items-center gap-2 rounded-md bg-background/70 hover:bg-background active:scale-[0.99] transition px-3 py-2 text-sm ring-1 ring-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+            className="hidden md:inline-flex items-center gap-2 rounded-md bg-background/70 hover:bg-background active:scale-[0.99] transition px-3 py-2 text-sm ring-1 ring-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
           >
             <BookOpenIcon />
             <span>Preview</span>
@@ -231,7 +231,7 @@ function StickyCTA() {
         <ShoppingCartIcon />
         <span className="text-sm font-semibold">Buy now</span>
         <ArrowUpRightIcon />
-        <span className="absolute inset-0 rounded-full ring-1 ring-black/10 pointer-events-none"></span>
+        <span className="absolute inset-0 rounded-full ring-1 ring-foreground pointer-events-none"></span>
       </a>
     </div>
   );

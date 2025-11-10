@@ -1,6 +1,6 @@
 export default function Story() {
   return (
-    <section id="story" className="relative border-t border-white/10">
+    <section id="story" className="relative border-t border-foreground/20">
       <div className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <StoryCopy />
@@ -54,7 +54,7 @@ function StoryVisual() {
   return (
     <div className="relative">
       <div className="absolute -inset-12 bg-[radial-gradient(60%_60%_at_70%_30%,rgba(99,102,241,0.25),transparent_60%)] blur-3xl opacity-30"></div>
-      <div className="relative mx-auto w-full max-w-md aspect-[4/5] rounded-[28px] overflow-hidden ring-1 ring-white/10 bg-background/60">
+      <div className="relative mx-auto w-full max-w-md aspect-[4/5] rounded-[28px] overflow-hidden ring-1 ring-foreground/20 bg-background/60">
         <img
           src="https://images.unsplash.com/photo-1621619856624-42fd193a0661?w=1080&q=80"
           alt="Soft photographic lighting placeholder"
@@ -62,7 +62,7 @@ function StoryVisual() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neutral-900/10 to-neutral-900/40"></div>
         <div className="absolute bottom-4 left-4 right-4 text-xs text-foreground">
-          <div className="inline-flex items-center gap-2 rounded-full bg-background/60 ring-1 ring-white/10 px-3 py-1">
+          <div className="inline-flex items-center gap-2 rounded-full bg-background/60 ring-1 ring-foreground/20 px-3 py-1">
             <LayersIcon />
             <span>Cinematic texture • gentle bloom</span>
           </div>

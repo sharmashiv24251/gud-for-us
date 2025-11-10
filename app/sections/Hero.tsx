@@ -78,7 +78,7 @@ function BookCard(): JSX.Element {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         aria-label={isOpen ? "Close book preview" : "Open book preview"}
-        className="relative w-full h-full cursor-pointer rounded-xl bg-background ring-1 ring-white/10 shadow-2xl transition-all duration-700 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 overflow-hidden"
+        className="relative w-full h-full cursor-pointer rounded-xl bg-background ring-1 ring-foreground shadow-2xl transition-all duration-700 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 overflow-hidden"
         style={{
           transform: isOpen
             ? ("perspective(1600px) rotateY(-25deg) scale(0.95)" as React.CSSProperties["transform"])
