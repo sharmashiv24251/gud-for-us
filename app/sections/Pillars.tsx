@@ -13,14 +13,14 @@ function SectionHeader() {
   return (
     <div className="mb-8 flex items-end justify-between">
       <h2
-        className="text-2xl sm:text-3xl text-white tracking-tight font-semibold"
+        className="text-2xl sm:text-3xl text-foreground tracking-tight font-semibold"
         style={{
           fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
         }}
       >
         Explore the pillars
       </h2>
-      <p className="text-sm text-neutral-400">Hover to feel depth</p>
+      <p className="text-sm text-foreground">Hover to feel depth</p>
     </div>
   );
 }
@@ -78,7 +78,7 @@ function PillarCard({
   glow: string;
 }) {
   return (
-    <article className="group relative rounded-2xl bg-neutral-900/60 ring-1 ring-white/10 p-5 overflow-hidden transform-gpu transition duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-500/10 motion-reduce:transition-none">
+    <article className="group relative rounded-2xl bg-background/60 ring-1 ring-white/10 p-5 overflow-hidden transform-gpu transition duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-500/10 motion-reduce:transition-none">
       <div
         aria-hidden="true"
         className={`absolute -inset-12 opacity-0 group-hover:opacity-100 transition duration-700 blur-3xl ${glow}`}
@@ -97,7 +97,7 @@ function PillarCard({
           </div>
         </div>
         <h3
-          className="mt-5 text-lg text-white font-semibold tracking-tight"
+          className="mt-5 text-lg text-foreground font-semibold tracking-tight"
           style={{
             fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
           }}
@@ -105,7 +105,7 @@ function PillarCard({
           {title}
         </h3>
         <p
-          className="mt-2 text-sm text-neutral-300"
+          className="mt-2 text-sm text-foreground"
           style={{ fontFamily: "Inter, ui-sans-serif, system-ui" }}
         >
           {description}

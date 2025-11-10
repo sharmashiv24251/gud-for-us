@@ -42,8 +42,8 @@ export default function Page() {
           <>
             <h2>Health</h2>
             <p>
-              The first non-negotiable. Without health, there’s no energy to
-              create, connect, or care. It’s the root from which every good
+              The first non-negotiable. Without health, there's no energy to
+              create, connect, or care. It's the root from which every good
               thing grows.
             </p>
           </>
@@ -123,7 +123,7 @@ export default function Page() {
       {/* Skip to content */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-2 focus:rounded-md focus:bg-neutral-800 focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-2 focus:rounded-md focus:bg-background focus:text-foreground"
       >
         Skip to content
       </a>
@@ -173,35 +173,35 @@ function Header() {
       <div className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div
-            className="h-8 w-8 rounded-md bg-neutral-900 ring-1 ring-white/10 grid place-content-center text-emerald-300 text-xs font-semibold"
+            className="h-8 w-8 rounded-md bg-background ring-1 ring-white/10 grid place-content-center text-emerald-300 text-xs font-semibold"
             style={{ letterSpacing: "-0.02em" }}
           >
             G
           </div>
-          <span className="text-sm text-neutral-300">GoodForUs</span>
+          <span className="text-sm text-foreground">GoodForUs</span>
         </div>
-        <nav className="hidden md:flex items-center gap-6 text-sm text-neutral-300">
+        <nav className="hidden md:flex items-center gap-6 text-sm text-foreground">
           <a
             href="#cards"
-            className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2 py-1"
+            className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2 py-1"
           >
             Pillars
           </a>
           <a
             href="#story"
-            className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2 py-1"
+            className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2 py-1"
           >
             Our Story
           </a>
           <a
             href="#testimonials"
-            className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2 py-1"
+            className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2 py-1"
           >
             Voices
           </a>
           <a
             href="#community"
-            className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2 py-1"
+            className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2 py-1"
           >
             Community
           </a>
@@ -209,7 +209,7 @@ function Header() {
         <div className="flex items-center gap-3">
           <a
             href="#checkout"
-            className="hidden md:inline-flex items-center gap-2 rounded-md bg-neutral-900/70 hover:bg-neutral-800 active:scale-[0.99] transition px-3 py-2 text-sm ring-1 ring-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+            className="hidden md:inline-flex items-center gap-2 rounded-md bg-background/70 hover:bg-background active:scale-[0.99] transition px-3 py-2 text-sm ring-1 ring-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
           >
             <BookOpenIcon />
             <span>Preview</span>
@@ -241,7 +241,7 @@ function StickyCTA() {
 function BookOpenIcon() {
   return (
     <svg
-      className="w-4 h-4 text-neutral-300"
+      className="w-4 h-4 text-foreground"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

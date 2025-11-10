@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 export default function Hero(): JSX.Element {
   return (
-    <section className="relative overflow-hidden bg-neutral-950">
+    <section className="relative overflow-hidden bg-background">
       <div className="mx-auto max-w-7xl px-6 pt-10 pb-20 md:pt-20 md:pb-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <HeroLeft />
@@ -27,7 +27,7 @@ function HeroLeft(): JSX.Element {
 function Title(): JSX.Element {
   return (
     <h1
-      className="leading-none text-white"
+      className="leading-none text-foreground"
       style={{
         fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
         letterSpacing: "-0.02em",
@@ -48,7 +48,7 @@ function Title(): JSX.Element {
 
 function Strapline(): JSX.Element {
   return (
-    <p className="mt-6 text-xs uppercase tracking-widest text-neutral-300">
+    <p className="mt-6 text-xs uppercase tracking-widest text-foreground">
       NON-NEGOTIABLES OF HEALTH AND WELLBEING
     </p>
   );
@@ -78,7 +78,7 @@ function BookCard(): JSX.Element {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         aria-label={isOpen ? "Close book preview" : "Open book preview"}
-        className="relative w-full h-full cursor-pointer rounded-xl bg-neutral-900 ring-1 ring-white/10 shadow-2xl transition-all duration-700 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 overflow-hidden"
+        className="relative w-full h-full cursor-pointer rounded-xl bg-background ring-1 ring-white/10 shadow-2xl transition-all duration-700 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 overflow-hidden"
         style={{
           transform: isOpen
             ? ("perspective(1600px) rotateY(-25deg) scale(0.95)" as React.CSSProperties["transform"])
@@ -133,7 +133,7 @@ function CoverFront({ isOpen }: CoverFrontProps): JSX.Element {
       ) : null}
 
       <div
-        className="absolute inset-0 bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 items-center justify-center text-white text-6xl font-bold hidden"
+        className="absolute inset-0 bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 items-center justify-center text-foreground text-6xl font-bold hidden"
         style={{ display: showFallback ? "flex" : "none" }}
       >
         <div className="text-center">

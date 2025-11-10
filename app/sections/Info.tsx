@@ -23,7 +23,7 @@ function BackgroundGlow() {
 function MainText() {
   return (
     <p
-      className="text-center text-[22px] sm:text-[36px] md:text-[56px] lg:text-[64px] leading-[1.05] font-semibold tracking-tight text-white"
+      className="text-center text-[22px] sm:text-[36px] md:text-[56px] lg:text-[64px] leading-[1.05] font-semibold tracking-tight text-foreground"
       style={{
         fontFamily: "var(--font-league-spartan), ui-sans-serif, system-ui",
       }}

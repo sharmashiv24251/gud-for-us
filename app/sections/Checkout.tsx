@@ -2,7 +2,7 @@ export default function Checkout() {
   return (
     <section id="checkout" className="relative border-t border-white/10">
       <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="rounded-2xl bg-neutral-900/60 ring-1 ring-white/10 p-8 flex flex-col md:flex-row items-center md:items-end justify-between gap-6">
+        <div className="rounded-2xl bg-background/60 ring-1 ring-white/10 p-8 flex flex-col md:flex-row items-center md:items-end justify-between gap-6">
           <CheckoutInfo />
           <CheckoutActions />
         </div>
@@ -15,7 +15,7 @@ function CheckoutInfo() {
   return (
     <div>
       <h3
-        className="text-xl text-white font-semibold tracking-tight"
+        className="text-xl text-foreground font-semibold tracking-tight"
         style={{
           fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
         }}
@@ -23,7 +23,7 @@ function CheckoutInfo() {
         Ready to read?
       </h3>
       <p
-        className="mt-1 text-sm text-neutral-300"
+        className="mt-1 text-sm text-foreground"
         style={{ fontFamily: "Inter, ui-sans-serif, system-ui" }}
       >
         Secure checkout with instant access. VAT calculated at checkout.
@@ -44,7 +44,7 @@ function CheckoutActions() {
       </a>
       <a
         href="#"
-        className="inline-flex items-center gap-2 rounded-xl bg-neutral-800 px-4 py-3 text-white text-sm ring-1 ring-white/10 transition hover:bg-neutral-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+        className="inline-flex items-center gap-2 rounded-xl bg-background px-4 py-3 text-foreground text-sm ring-1 ring-white/10 transition hover:bg-background active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
       >
         <ShieldCheckIcon />
         <span>30-day guarantee</span>

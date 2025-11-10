@@ -15,7 +15,7 @@ function CommunityInfo() {
   return (
     <div className="md:col-span-2">
       <h3
-        className="text-xl sm:text-2xl text-white tracking-tight font-semibold"
+        className="text-xl sm:text-2xl text-foreground tracking-tight font-semibold"
         style={{
           fontFamily: "'League Spartan', ui-sans-serif, Inter, system-ui",
         }}
@@ -23,7 +23,7 @@ function CommunityInfo() {
         🌿 Join the Guders
       </h3>
       <p
-        className="mt-3 text-sm text-neutral-300"
+        className="mt-3 text-sm text-foreground"
         style={{ fontFamily: "Inter, ui-sans-serif, system-ui" }}
       >
         A community of conscious individuals living intentionally, embracing
@@ -44,7 +44,7 @@ function JoinForm() {
         type="email"
         required
         placeholder="Enter your email"
-        className="w-full md:w-auto flex-1 rounded-xl bg-neutral-900/60 ring-1 ring-white/10 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
+        className="w-full md:w-auto flex-1 rounded-xl bg-background/60 ring-1 ring-white/10 px-4 py-3 text-sm text-foreground placeholder:text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
       />
       <button
         type="submit"
