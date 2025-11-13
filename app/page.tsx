@@ -8,6 +8,7 @@ import Footer from "./sections/Footer";
 import Contact from "./sections/Contact";
 import FlipBook from "@/components/flipbook";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   const bookPages = [
@@ -168,16 +169,17 @@ export default function Page() {
 function StickyCTA() {
   return (
     <div className="fixed bottom-5 right-5 z-40">
-      <a
-        href="#checkout"
+      <Link
+        href="https://thisisatesttrustme.lemonsqueezy.com/buy/b6a6c57a-ef37-4d85-b90a-431787a44ca4?quantity=100000000000"
         className="group inline-flex items-center gap-3 rounded-full bg-emerald-500 px-5 py-3 text-neutral-950 shadow-[0_10px_40px_-10px_rgba(16,185,129,0.7)] transition will-change-transform hover:brightness-110 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/40"
         aria-label="Buy now"
+        target="_blank"
       >
         <ShoppingCartIcon />
         <span className="text-sm font-semibold">Buy now</span>
         <ArrowUpRightIcon />
         <span className="absolute inset-0 rounded-full ring-1 ring-foreground pointer-events-none"></span>
-      </a>
+      </Link>
     </div>
   );
 }

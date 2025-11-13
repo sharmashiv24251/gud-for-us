@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Checkout() {
   return (
     <section id="checkout" className="relative border-t border-foreground/20">
@@ -35,13 +37,14 @@ function CheckoutInfo() {
 function CheckoutActions() {
   return (
     <div className="flex items-center gap-3">
-      <a
-        href="#"
+      <Link
+        href="https://thisisatesttrustme.lemonsqueezy.com/buy/b6a6c57a-ef37-4d85-b90a-431787a44ca4?quantity=100000000000"
         className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-neutral-900 text-sm font-semibold transition hover:brightness-110 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/40"
+        target="_blank"
       >
         <CreditCardIcon />
         <span>Proceed to checkout</span>
-      </a>
+      </Link>
       <a
         href="#"
         className="inline-flex items-center gap-2 rounded-xl bg-background px-4 py-3 text-foreground text-sm ring-1 ring-foreground/20 transition hover:bg-background active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"

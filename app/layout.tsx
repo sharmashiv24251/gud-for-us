@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 function Header() {
   return (
-    <header className="fixed top-0 z-50 w-full bg-white/2.5 backdrop-blur-md border-b border-white/50  before:absolute before:inset-0 before:bg-linear-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none">
+    <header className="fixed top-0 z-50 w-full bg-white/50 backdrop-blur-md border-b border-white/50  before:absolute before:inset-0 before:bg-linear-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none">
       <div className="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div
