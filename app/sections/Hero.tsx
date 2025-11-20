@@ -1,18 +1,21 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import type { JSX } from "react";
-import { LayoutGroup, motion } from "motion/react";
 import { VerticalCutReveal } from "@/components/ui/vertical-cut-reveal";
 
 export default function Hero(): JSX.Element {
   return (
-    <section className="relative md:h-[calc(100vh-84px)] max-h-[1440px] md:mt-[30px] lg:mt-2 mt flex items-center">
-      <div className="mx-auto max-w-7xl px-6 py-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
-          <div className="lg:col-span-3">
+    <section className="relative w-full flex items-center min-h-[calc(100vh-84px)] lg:h-[calc(100vh-84px)] lg:max-h-[1440px] py-12 lg:py-0">
+      <div className="mx-auto max-w-7xl px-6 w-full h-full flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-10 items-center">
+          {/* Left Content */}
+          <div className="lg:col-span-3 flex flex-col items-center lg:items-start order-1">
             <HeroLeft />
           </div>
-          <div className="lg:col-span-2">
+
+          {/* Right Content (Book) */}
+          <div className="lg:col-span-2 w-full order-2">
             <HeroRight />
           </div>
         </div>
@@ -23,18 +26,16 @@ export default function Hero(): JSX.Element {
 
 function HeroLeft(): JSX.Element {
   return (
-    <div className="relative">
+    <div className="relative flex flex-col items-center lg:items-start w-full">
       <Title />
-      <Strapline />
+      <div className="mt-4 lg:mt-0">
+        <Strapline />
+      </div>
     </div>
   );
 }
 
 function Title(): JSX.Element {
-  const variantsTextBlurIn = {
-    hidden: { filter: "blur(10px)", opacity: 0 },
-    visible: { filter: "blur(0px)", opacity: 1 },
-  };
   return (
     <div className="relative">
       <div
@@ -44,7 +45,7 @@ function Title(): JSX.Element {
           letterSpacing: "-0.02em",
         }}
       >
-        <div className="flex items-center flex-wrap max-sm:justify-center text-7xl sm:text-7xl md:text-8xl xl:text-9xl 2xl:text-9xl font-semibold tracking-tight">
+        <div className="flex items-center justify-center lg:justify-start flex-wrap text-7xl sm:text-7xl md:text-8xl xl:text-9xl 2xl:text-9xl font-semibold tracking-tight text-center lg:text-left">
           <span>gud for us</span>
         </div>
       </div>
@@ -54,7 +55,7 @@ function Title(): JSX.Element {
 
 function Strapline(): JSX.Element {
   return (
-    <div className="mt-0 text-4xl md:text-5xl lg:text-6xl text-center">
+    <div className="mt-0 text-4xl md:text-5xl lg:text-6xl text-center lg:text-left">
       <VerticalCutReveal
         splitBy="characters"
         staggerDuration={0.025}
@@ -64,8 +65,8 @@ function Strapline(): JSX.Element {
           stiffness: 200,
           damping: 21,
         }}
-        containerClassName="max-sm:pl-4"
-        elementLevelClassName="pb-[6px]" // Add this padding to prevent cutoff
+        containerClassName="justify-center lg:justify-start"
+        elementLevelClassName="pb-[6px]"
       >
         {`non negotiables`}
       </VerticalCutReveal>
@@ -80,7 +81,7 @@ function Strapline(): JSX.Element {
           damping: 21,
           delay: 0.5,
         }}
-        containerClassName="max-sm:pl-4"
+        containerClassName="justify-center lg:justify-start"
       >
         {`of Health ❤️`}
       </VerticalCutReveal>
@@ -94,8 +95,8 @@ function Strapline(): JSX.Element {
           damping: 21,
           delay: 1.1,
         }}
-        containerClassName="max-sm:pl-4"
-        elementLevelClassName="pb-[6px]" // Add this padding to prevent cutoff
+        containerClassName="justify-center lg:justify-start"
+        elementLevelClassName="pb-[6px]"
       >
         {`and ✨ wellbeing`}
       </VerticalCutReveal>
@@ -105,7 +106,7 @@ function Strapline(): JSX.Element {
 
 function HeroRight(): JSX.Element {
   return (
-    <div className="relative">
+    <div className="relative w-full flex justify-center lg:block">
       <BookCard />
     </div>
   );
@@ -119,13 +120,12 @@ function BookCard(): JSX.Element {
   const handleClick = () => setIsOpen((v) => !v);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsOpen(true);
-    }, 1500);
-
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 2500);
+    const t1 = setTimeout(() => setIsOpen(true), 1500);
+    const t2 = setTimeout(() => setIsOpen(false), 2500);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
   }, []);
 
   return (
@@ -184,15 +184,14 @@ function CoverFront({ isOpen }: CoverFrontProps): JSX.Element {
           onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
             const img = e.currentTarget;
             img.style.display = "none";
-            const next = img.nextElementSibling as HTMLElement | null;
-            if (next) next.style.display = "flex";
+            // The sibling fallback div will be shown via state
             setShowFallback(true);
           }}
         />
       ) : null}
 
       <div
-        className="absolute inset-0 bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 items-center justify-center text-foreground text-6xl font-bold hidden"
+        className="absolute inset-0 bg-linear-to-br from-emerald-500 via-emerald-600 to-teal-700 items-center justify-center text-foreground text-6xl font-bold hidden"
         style={{ display: showFallback ? "flex" : "none" }}
       >
         <div className="text-center">
