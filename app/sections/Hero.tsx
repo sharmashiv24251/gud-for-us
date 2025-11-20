@@ -26,7 +26,7 @@ export default function Hero(): JSX.Element {
 
 function HeroLeft(): JSX.Element {
   return (
-    <div className="relative flex flex-col items-center lg:items-start w-full">
+    <div className="relative flex flex-col items-center lg:items-start max-[420px]:items-start w-full">
       <Title />
       <div className="mt-4 lg:mt-0">
         <Strapline />
@@ -45,7 +45,7 @@ function Title(): JSX.Element {
           letterSpacing: "-0.02em",
         }}
       >
-        <div className="flex items-center justify-center lg:justify-start flex-wrap text-7xl sm:text-7xl md:text-8xl xl:text-9xl 2xl:text-9xl font-semibold tracking-tight text-center lg:text-left">
+        <div className="flex items-center justify-center lg:justify-start max-[420px]:justify-start flex-wrap text-7xl sm:text-7xl md:text-8xl xl:text-9xl 2xl:text-9xl font-semibold tracking-tight text-center lg:text-left max-[420px]:text-left">
           <span>gud for us</span>
         </div>
       </div>
@@ -55,7 +55,7 @@ function Title(): JSX.Element {
 
 function Strapline(): JSX.Element {
   return (
-    <div className="mt-0 text-4xl md:text-5xl lg:text-6xl text-center lg:text-left">
+    <div className="mt-0 text-4xl md:text-5xl lg:text-6xl text-center lg:text-left max-[420px]:text-left">
       <VerticalCutReveal
         splitBy="characters"
         staggerDuration={0.025}
@@ -65,7 +65,7 @@ function Strapline(): JSX.Element {
           stiffness: 200,
           damping: 21,
         }}
-        containerClassName="justify-center lg:justify-start"
+        containerClassName="justify-center lg:justify-start max-[420px]:justify-start"
         elementLevelClassName="pb-[6px]"
       >
         {`non negotiables`}
@@ -81,7 +81,7 @@ function Strapline(): JSX.Element {
           damping: 21,
           delay: 0.5,
         }}
-        containerClassName="justify-center lg:justify-start"
+        containerClassName="justify-center lg:justify-start max-[420px]:justify-start"
       >
         {`of Health ❤️`}
       </VerticalCutReveal>
@@ -95,7 +95,7 @@ function Strapline(): JSX.Element {
           damping: 21,
           delay: 1.1,
         }}
-        containerClassName="justify-center lg:justify-start"
+        containerClassName="justify-center lg:justify-start max-[420px]:justify-start"
         elementLevelClassName="pb-[6px]"
       >
         {`and ✨ wellbeing`}
