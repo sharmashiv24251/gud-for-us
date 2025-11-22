@@ -6,7 +6,15 @@ import { VerticalCutReveal } from "@/components/ui/vertical-cut-reveal";
 
 export default function Hero(): JSX.Element {
   return (
-    <section className="relative w-full flex items-center min-h-[calc(100vh-84px)] lg:h-[calc(100vh-84px)] lg:max-h-[1440px] py-12 lg:py-0">
+    <section
+      className="relative w-full flex items-center min-h-[calc(100vh-84px)] lg:h-[calc(100vh-84px)] lg:max-h-[1440px] py-12 lg:py-0"
+      style={{
+        backgroundImage: "url('/hero-bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="mx-auto max-w-7xl px-6 w-full h-full flex flex-col justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-10 items-center">
           {/* Left Content */}

@@ -4,13 +4,16 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Quick guard: prevent horizontal overflow caused by the fixed flipbook */
-html, body {
+html,
+body {
   box-sizing: border-box;
   overflow-x: hidden;
 }
 *,
 *::before,
-*::after { box-sizing: inherit; }
+*::after {
+  box-sizing: inherit;
+}
 
 ::selection {
   background: rgb(16, 185, 129);
@@ -22,13 +25,12 @@ html, body {
   color: white;
 }
 
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  
+
   /* Custom colors for the design */
   --color-neutral-50: oklch(0.985 0 0);
   --color-neutral-100: oklch(0.97 0 0);
@@ -39,17 +41,17 @@ html, body {
   --color-neutral-800: oklch(0.269 0 0);
   --color-neutral-900: oklch(0.205 0 0);
   --color-neutral-950: oklch(0.145 0 0);
-  
+
   --color-emerald-300: oklch(0.769 0.188 70.08);
   --color-emerald-400: oklch(0.646 0.222 41.116);
   --color-emerald-500: oklch(0.6 0.118 184.704);
-  
+
   --color-indigo-400: oklch(0.627 0.265 303.9);
   --color-sky-400: oklch(0.696 0.17 162.48);
-  
+
   --color-primary: oklch(0.6 0.118 184.704);
   --color-primary-foreground: oklch(0.145 0 0);
-  
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -63,7 +65,7 @@ html, body {
 } */
 
 /* OFF WHITE */
- /* :root {
+/* :root {
   --radius: 0.625rem;
   --foreground: oklch(0.16 0.03 90);
   --background: oklch(0.975 0.015 95);
@@ -75,18 +77,19 @@ html, body {
   --foreground: oklch(0.14 0.015 115);
   /* --background: oklch(0.98 0.01 105); */
   /* --background: oklch(0.98 0.015 105); */
- --background: oklch(0.98 0.02 105);
-/* --background: oklch(0.98 0.03 105); */
-/* --background: oklch(0.98 0.04 105); */
-/* --background: oklch(0.98 0.05 105); */
-/* --background: oklch(0.98 0.06 105); */
-/* --background: oklch(0.98 0.075 105); */
-/* --background: oklch(0.98 0.09 105); */
-/* --background: oklch(0.98 0.11 105); */
-/* --background: oklch(0.98 0.13 105); */
+  /* --background: oklch(0.98 0.02 105); */
 
+  --background: oklch(0.9608 0.0374 125.21);
+
+  /* --background: oklch(0.98 0.03 105); */
+  /* --background: oklch(0.98 0.04 105); */
+  /* --background: oklch(0.98 0.05 105); */
+  /* --background: oklch(0.98 0.06 105); */
+  /* --background: oklch(0.98 0.075 105); */
+  /* --background: oklch(0.98 0.09 105); */
+  /* --background: oklch(0.98 0.11 105); */
+  /* --background: oklch(0.98 0.13 105); */
 }
-
 
 @layer base {
   * {
@@ -124,7 +127,7 @@ html, body {
   top: 50%;
   left: 50%;
   width: 40cqmin;
-aspect-ratio: 3 / 4;
+  aspect-ratio: 3 / 4;
 
   pointer-events: none;
   perspective: 1000px;
@@ -156,11 +159,15 @@ aspect-ratio: 3 / 4;
   user-select: none;
   transform-style: preserve-3d;
   transform-origin: left center;
-  transition:
-    transform 1s,
-    rotate 1s ease-in calc((min(var(--i, 0), var(--c, 0)) - max(var(--i, 0), var(--c, 0))) * 50ms);
+  transition: transform 1s,
+    rotate 1s ease-in
+      calc(
+        (min(var(--i, 0), var(--c, 0)) - max(var(--i, 0), var(--c, 0))) * 50ms
+      );
   translate: calc(var(--i, 0) * -100%) 0px 0px;
-  transform: translateZ(calc((var(--c, 0) - var(--i, 0) - 0.5) * calc(var(--thickness) * 0.23cqmin)));
+  transform: translateZ(
+    calc((var(--c, 0) - var(--i, 0) - 0.5) * calc(var(--thickness) * 0.23cqmin))
+  );
   rotate: 0 1 0 calc(clamp(0, var(--c, 0) - var(--i, 0), 1) * -180deg);
   box-shadow: 0em 0.5em 1em -0.2em #00000020;
 }
@@ -223,14 +230,15 @@ aspect-ratio: 3 / 4;
   left: 1em;
 }
 
-
 .page .cover {
   background: radial-gradient(
       circle farthest-corner at 80% 20%,
       hsl(150 80% 20% / 0.3) 0%,
       hsl(170 60% 10% / 0.1) 100%
     ),
-    hsl(231, 32%, 29%) url("https://ihichdejyaeignzbnfgb.supabase.co/storage/v1/object/public/website-assets/book-cover.jpeg") 50% / cover;
+    hsl(231, 32%, 29%)
+      url("https://ihichdejyaeignzbnfgb.supabase.co/storage/v1/object/public/website-assets/book-cover.jpeg")
+      50% / cover;
   color: hsl(200 30% 98%);
 }
 
