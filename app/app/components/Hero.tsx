@@ -1,3 +1,7 @@
+"use client";
+
+import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
+
 export default function Hero() {
   return (
     <header className="relative pt-32 pb-48 md:pb-64 bg-[#4a6c48]" id="get-app">
@@ -12,9 +16,17 @@ export default function Hero() {
 
         {/* Main Heading */}
         <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white mb-8 leading-tight">
-          Know what you <br className="hidden md:block" />
-          <span className="italic font-normal text-[#FDD835]">really</span>{" "}
-          consume.
+          Know what you
+          <br />
+          <span className="inline-flex items-baseline gap-4">
+            <LayoutTextFlip
+              text="really "
+              words={["consume", "buy"]}
+              duration={2000}
+              textClassName="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white"
+              wordClassName="font-display text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight text-[#FDD835] italic"
+            />
+          </span>
         </h1>
 
         {/* Subtitle */}

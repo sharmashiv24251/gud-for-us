@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
 /* Custom theme configuration */
-:root {
+@theme {
+  /* Font families - matching the HTML example */
+  --font-family-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-family-display: var(--font-playfair), "Playfair Display", ui-serif, Georgia, serif;
+
+  /* Color variables */
   --color-primary: #2e7d32;
   --color-primary-dark: #1b5e20;
   --color-secondary: #a5d6a7;
@@ -22,9 +27,18 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Font family utilities */
+.font-display {
+  font-family: var(--font-playfair), "Playfair Display", ui-serif, Georgia, serif;
+}
+
+.font-sans {
+  font-family: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ISO Card hover effect */
