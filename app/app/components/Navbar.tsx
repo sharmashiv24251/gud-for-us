@@ -1,20 +1,50 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isInHero, setIsInHero] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.getElementById("get-app");
+      if (heroSection) {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        const scrollPosition = window.scrollY + 80; // Offset for navbar height
+        setIsInHero(scrollPosition < heroBottom);
+      }
+    };
+
+    handleScroll(); // Check initial position
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed w-full z-50 bg-[#F2F0E9]/90 backdrop-blur-md border-b border-gray-200">
+    <nav
+      className={`fixed w-full z-50 backdrop-blur-md border-b transition-colors duration-500 ${
+        isInHero
+          ? "bg-[#4a6c48]/90 border-white/20"
+          : "bg-[#F2F0E9]/90 border-gray-200"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-2">
-            <span className="material-icons-round text-[#2E7D32] text-3xl">
+            <span
+              className={`material-icons-round text-3xl transition-colors duration-500 ${
+                isInHero ? "text-[#FDD835]" : "text-[#2E7D32]"
+              }`}
+            >
               eco
             </span>
-            <span className="font-display font-semibold text-2xl tracking-tight text-gray-900">
+            <span
+              className={`font-display font-semibold text-2xl tracking-tight transition-colors duration-500 ${
+                isInHero ? "text-white" : "text-gray-900"
+              }`}
+            >
               GudForUs
             </span>
           </div>
@@ -22,19 +52,31 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <a
-              className="text-sm font-medium text-gray-600 hover:text-[#2E7D32] transition-colors"
+              className={`text-sm font-medium transition-colors duration-500 ${
+                isInHero
+                  ? "text-green-50 hover:text-white"
+                  : "text-gray-600 hover:text-[#2E7D32]"
+              }`}
               href="#how-it-works"
             >
               How it works
             </a>
             <a
-              className="text-sm font-medium text-gray-600 hover:text-[#2E7D32] transition-colors"
+              className={`text-sm font-medium transition-colors duration-500 ${
+                isInHero
+                  ? "text-green-50 hover:text-white"
+                  : "text-gray-600 hover:text-[#2E7D32]"
+              }`}
               href="#for-brands"
             >
               For Brands
             </a>
             <a
-              className="text-sm font-medium text-gray-600 hover:text-[#2E7D32] transition-colors"
+              className={`text-sm font-medium transition-colors duration-500 ${
+                isInHero
+                  ? "text-green-50 hover:text-white"
+                  : "text-gray-600 hover:text-[#2E7D32]"
+              }`}
               href="#science"
             >
               Science
@@ -51,7 +93,11 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gray-600 hover:text-gray-900 focus:outline-none"
+              className={`focus:outline-none transition-colors duration-500 ${
+                isInHero
+                  ? "text-green-50 hover:text-white"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
             >
               <span className="material-icons-round text-3xl">
                 {mobileMenuOpen ? "close" : "menu"}
@@ -62,24 +108,40 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
+          <div
+            className={`md:hidden py-4 border-t transition-colors duration-500 ${
+              isInHero ? "border-white/20" : "border-gray-200"
+            }`}
+          >
             <div className="flex flex-col space-y-4">
               <a
-                className="text-sm font-medium text-gray-600 hover:text-[#2E7D32] transition-colors"
+                className={`text-sm font-medium transition-colors duration-500 ${
+                  isInHero
+                    ? "text-green-50 hover:text-white"
+                    : "text-gray-600 hover:text-[#2E7D32]"
+                }`}
                 href="#how-it-works"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 How it works
               </a>
               <a
-                className="text-sm font-medium text-gray-600 hover:text-[#2E7D32] transition-colors"
+                className={`text-sm font-medium transition-colors duration-500 ${
+                  isInHero
+                    ? "text-green-50 hover:text-white"
+                    : "text-gray-600 hover:text-[#2E7D32]"
+                }`}
                 href="#for-brands"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 For Brands
               </a>
               <a
-                className="text-sm font-medium text-gray-600 hover:text-[#2E7D32] transition-colors"
+                className={`text-sm font-medium transition-colors duration-500 ${
+                  isInHero
+                    ? "text-green-50 hover:text-white"
+                    : "text-gray-600 hover:text-[#2E7D32]"
+                }`}
                 href="#science"
                 onClick={() => setMobileMenuOpen(false)}
               >
