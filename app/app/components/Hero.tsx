@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
+import { RotatingText } from "@/components/ui/rotating-text";
 
 export default function Hero() {
   return (
@@ -21,13 +21,14 @@ export default function Hero() {
             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white mb-8 leading-tight">
               Know what you
               <br />
-              <span className="inline-flex items-baseline gap-4">
-                <LayoutTextFlip
-                  text="really "
-                  words={["consume", "buy"]}
+              <span className="inline-flex items-baseline gap-2">
+                <span className="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white">
+                  really{" "}
+                </span>
+                <RotatingText
+                  text={["consume", "buy"]}
                   duration={2000}
-                  textClassName="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white"
-                  wordClassName="font-display text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight text-[#FDD835] italic"
+                  className="font-display text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight text-[#FDD835] italic"
                 />
               </span>
             </h1>

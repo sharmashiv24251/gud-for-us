@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
@@ -33,20 +34,20 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-2">
-            <span
-              className={`material-icons-round text-3xl transition-colors duration-500 ${
-                isInHero ? "text-[#FDD835]" : "text-[#2E7D32]"
-              }`}
-            >
-              eco
-            </span>
-            <span
+            <Image
+              src="/gud.png"
+              alt="Logo"
+              width={70}
+              height={70}
+              className={`rounded-md ${isInHero ? "" : "invert transition-colors duration-500"}`}
+            />
+            {/* <span
               className={`font-display font-semibold text-2xl tracking-tight transition-colors duration-500 ${
                 isInHero ? "text-white" : "text-gray-900"
               }`}
             >
               GudForUs
-            </span>
+            </span> */}
           </div>
 
           {/* Desktop Navigation */}
