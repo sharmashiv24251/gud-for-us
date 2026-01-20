@@ -9,6 +9,8 @@ interface ScorePreviewProps {
   icon: "health" | "compatibility" | "environment";
   className?: string;
   animateOnMount?: boolean;
+  clean?: boolean;
+  title?: string;
 }
 
 const ScorePreview: React.FC<ScorePreviewProps> = ({
@@ -17,12 +19,14 @@ const ScorePreview: React.FC<ScorePreviewProps> = ({
   icon,
   className = "",
   animateOnMount = true,
+  clean = false,
+  title,
 }) => {
   const [animatedScore, setAnimatedScore] = useState(
-    animateOnMount ? 0 : score
+    animateOnMount ? 0 : score,
   );
   const [animatedWidth, setAnimatedWidth] = useState(
-    animateOnMount ? 0 : (score / maxScore) * 100
+    animateOnMount ? 0 : (score / maxScore) * 100,
   );
   const [isVisible, setIsVisible] = useState(false);
 
@@ -75,7 +79,7 @@ const ScorePreview: React.FC<ScorePreviewProps> = ({
           <img
             src="/app-images/heart.png"
             alt="Health"
-            className="w-12 h-12 object-contain"
+            className="sm:w-25 sm:h-25 w-20 h-20 object-contain drop-shadow-sm"
           />
         );
       case "compatibility":
@@ -83,13 +87,13 @@ const ScorePreview: React.FC<ScorePreviewProps> = ({
           <img
             src="/app-images/compatibility.png"
             alt="Compatibility"
-            className="w-12 h-12 object-contain"
+            className="sm:w-25 sm:h-25 w-20 h-20 object-contain drop-shadow-sm"
           />
         );
       case "environment":
         return (
-          <div className="w-12 h-12 rounded-full overflow-hidden shadow-sm">
-            <Globe size={48} className="!h-12" />
+          <div className="sm:w-25 sm:h-25 w-20 h-20 rounded-full overflow-hidden shadow-sm">
+            <Globe size={80} className="!h-20" />
           </div>
         );
       default:
@@ -99,27 +103,42 @@ const ScorePreview: React.FC<ScorePreviewProps> = ({
 
   return (
     <div
-      className={`bg-white rounded-2xl p-4 shadow-lg border border-gray-100 ${className}`}
-      style={{
-        background: "linear-gradient(145deg, #ffffff 0%, #fafafa 100%)",
-      }}
+      className={`${
+        clean
+          ? "p-0"
+          : "bg-white rounded-2xl p-4 shadow-lg border border-gray-100"
+      } ${className}`}
+      style={
+        clean
+          ? {}
+          : {
+              background: "linear-gradient(145deg, #ffffff 0%, #fafafa 100%)",
+            }
+      }
     >
-      <div className="flex items-center gap-4">
+      <div className="flex flex-row-reverse items-center gap-3">
         {/* Icon */}
-        {renderIcon()}
+        <div className="shrink-0">{renderIcon()}</div>
 
         {/* Score and Progress */}
         <div className="flex-1">
+          {/* Title if provided */}
+          {title && (
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
+          )}
+
           {/* Score Value */}
-          <div className="flex items-baseline gap-1 mb-2">
-            <span className="text-2xl font-bold text-gray-900">
+          <div className="flex items-baseline gap-2 mb-3">
+            <span className="text-5xl font-semibold text-gray-900 tracking-tight">
               {animatedScore}
             </span>
-            <span className="text-sm text-gray-400">/ {maxScore}</span>
+            <span className="text-lg text-gray-400 font-medium">
+              / {maxScore}
+            </span>
           </div>
 
           {/* Progress Bar */}
-          <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+          <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
             <div
               className="h-full rounded-full transition-all duration-300 ease-out"
               style={{

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   const footerLinks = {
     product: {
@@ -43,15 +45,16 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
           {/* Brand Section */}
           <div className="col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="material-icons-round text-[#2E7D32] text-2xl">
-                eco
-              </span>
-              <span className="font-display font-semibold text-xl text-gray-900">
-                GudForUs
-              </span>
+            <div className="flex items-center">
+              <Image
+                src="/gud.png"
+                alt="Logo"
+                width={100}
+                height={100}
+                className="invert translate-x-[-10px]"
+              />
             </div>
-            <p className="text-[#6B7280] text-sm max-w-xs mb-6">
+            <p className="text-[#6B7280] text-sm max-w-xs mb-6 translate-y-[-10px]">
               Empowering consumers with transparency. We believe you have the
               right to know exactly what goes into your body.
             </p>

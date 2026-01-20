@@ -14,7 +14,9 @@ export default function AppPage() {
       <Navbar />
       <main>
         <Hero />
-        <PhoneScrollPreview />
+        <div className="max-sm:hidden">
+          <PhoneScrollPreview />
+        </div>
         <ScoresSection />
         <VideoSection />
         <FeatureCards />

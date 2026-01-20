@@ -18,17 +18,17 @@ export default function Hero() {
             </div>
 
             {/* Main Heading */}
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white mb-8 leading-tight">
+            <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl font-medium tracking-tight text-white mb-8 leading-tight">
               Know what you
               <br />
               <span className="inline-flex items-baseline gap-2">
-                <span className="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white">
+                <span className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight text-white">
                   really{" "}
                 </span>
                 <RotatingText
                   text={["consume", "buy"]}
                   duration={2000}
-                  className="font-display text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight text-[#FDD835] italic"
+                  className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal tracking-tight text-[#FDD835] italic"
                 />
               </span>
             </h1>

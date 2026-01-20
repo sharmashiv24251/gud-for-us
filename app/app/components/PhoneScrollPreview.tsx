@@ -32,16 +32,42 @@ export default function PhoneScrollPreview() {
   // Scale also spans first 50%
   const scale = useTransform(scrollYProgress, [0, 0.5], scaleDimensions());
 
+  // Opacity for info blocks - fades in during the first 40% of scroll
+  const infoOpacity = useTransform(scrollYProgress, [0.4, 0.7], [0, 1]);
+  // Slide in effect - subtle movement
+  const infoXLeft = useTransform(scrollYProgress, [0.4, 0.7], [-20, 0]);
+  const infoXRight = useTransform(scrollYProgress, [0.4, 0.7], [20, 0]);
+
   return (
     <section className="relative -mt-32 md:-mt-48 z-20" ref={containerRef}>
       {/* Container height for scroll tracking - phone stays at bottom */}
       <div className="h-[50rem] md:h-[70rem] flex items-end justify-center relative px-4 pb-8 md:pb-24">
         <div
-          className="sticky bottom-20 md:bottom-24 w-full"
+          className="sticky bottom-20 [700px]:bottom-24 w-full flex justify-center items-center gap-6 md:gap-10 lg:gap-14"
           style={{
             perspective: "1000px",
           }}
         >
+          {/* Left Info Blocks */}
+          <motion.div
+            style={{ opacity: infoOpacity, x: infoXLeft }}
+            className="hidden md:flex flex-col gap-24 lg:gap-40 items-end text-right text-gray-800"
+          >
+            <div className="max-w-[200px]">
+              <h3 className="text-xl font-bold mb-2">Health Score</h3>
+              <p className="text-sm text-gray-600">
+                Instantly assess nutritional value with our color-coded rating
+                system.
+              </p>
+            </div>
+            <div className="max-w-[200px]">
+              <h3 className="text-xl font-bold mb-2">Clean Ingredients</h3>
+              <p className="text-sm text-gray-600">
+                Identify additives and ultra-processed ingredients at a glance.
+              </p>
+            </div>
+          </motion.div>
+
           {/* iPhone Card */}
           <motion.div
             style={{
@@ -49,7 +75,7 @@ export default function PhoneScrollPreview() {
               scale,
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
             }}
-            className="mx-auto w-[280px] md:w-[260px] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden bg-gray-900"
+            className="shrink-0 w-[250px] md:w-[235px] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden bg-gray-900"
           >
             {/* iPhone Frame - 20:9 aspect ratio */}
             <div className="relative bg-gray-900 rounded-[2.5rem] md:rounded-[3rem] p-[6px] md:p-[8px]">
@@ -72,7 +98,7 @@ export default function PhoneScrollPreview() {
                 style={{ aspectRatio: "9/20" }}
               >
                 {/* Dynamic Island */}
-                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-[70px] md:w-[85px] h-[22px] md:h-[26px] bg-black rounded-full z-30 flex items-center justify-center">
+                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-[60px] md:w-[75px] h-[20px] md:h-[24px] bg-black rounded-full z-30 flex items-center justify-center">
                   <div className="w-2 h-2 rounded-full bg-gray-800"></div>
                 </div>
 
@@ -91,6 +117,25 @@ export default function PhoneScrollPreview() {
                 {/* Home Indicator */}
                 <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-[100px] md:w-[120px] h-[4px] md:h-[5px] bg-white/30 rounded-full z-30"></div>
               </div>
+            </div>
+          </motion.div>
+
+          {/* Right Info Blocks */}
+          <motion.div
+            style={{ opacity: infoOpacity, x: infoXRight }}
+            className="hidden md:flex flex-col gap-24 lg:gap-40 items-start text-left text-gray-800"
+          >
+            <div className="max-w-[200px]">
+              <h3 className="text-xl font-bold mb-2">Compatibility</h3>
+              <p className="text-sm text-gray-600">
+                Personalized to your body and preferences.
+              </p>
+            </div>
+            <div className="max-w-[200px]">
+              <h3 className="text-xl font-bold mb-2">Smart Swaps</h3>
+              <p className="text-sm text-gray-600">
+                Get instant recommendations for healthier alternatives.
+              </p>
             </div>
           </motion.div>
         </div>
